@@ -217,11 +217,26 @@
             transform: translateY(-2px);
         }
 
-        /* Allgemeine Sections */
+        /* Allgemeine Sections mit großer Wasserzeichen-Biene im Hintergrund */
         section {
             padding: 4.5rem 1.5rem;
             max-width: 1100px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            right: -30px;
+            top: 20%;
+            width: 320px;
+            height: 320px;
+            background: url('biene.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.04; /* Sehr dezent im Hintergrund */
+            pointer-events: none;
+            z-index: 0;
         }
 
         .section-header {
@@ -229,6 +244,7 @@
             max-width: 720px;
             margin: 0 auto 3.2rem auto;
             position: relative;
+            z-index: 1;
         }
 
         .section-header h2 {
@@ -242,24 +258,14 @@
             font-size: 1.1rem;
         }
 
-        /* Dekorative Biene für Überschriften */
-        .section-header::before {
-            content: "";
-            display: block;
-            width: 50px;
-            height: 50px;
-            background: url('Biene 4.jpg') no-repeat center center;
-            background-size: contain;
-            margin: 0 auto 0.6rem auto;
-            opacity: 0.85;
-        }
-
         /* Über uns / Philosophie */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .about-text h3 {
@@ -302,6 +308,8 @@
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 1.4rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-item {
@@ -330,6 +338,8 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.2rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .gallery-card {
@@ -363,11 +373,28 @@
         .products-wrapper {
             background-color: var(--bg-sand);
             padding: 4.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products-wrapper::before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            bottom: 10%;
+            width: 350px;
+            height: 350px;
+            background: url('biene.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.04;
+            pointer-events: none;
         }
 
         .products-inner {
             max-width: 1100px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .product-grid {
@@ -435,6 +462,8 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
             border-top: 5px solid var(--forest);
+            position: relative;
+            z-index: 1;
         }
 
         .brand-badges {
