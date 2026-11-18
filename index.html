@@ -228,6 +228,7 @@
             text-align: center;
             max-width: 720px;
             margin: 0 auto 3.2rem auto;
+            position: relative;
         }
 
         .section-header h2 {
@@ -239,6 +240,18 @@
         .section-header p {
             color: var(--text-muted);
             font-size: 1.1rem;
+        }
+
+        /* Dekorative Biene für Überschriften */
+        .section-header::before {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: url('Biene 4.jpg') no-repeat center center;
+            background-size: contain;
+            margin: 0 auto 0.6rem auto;
+            opacity: 0.85;
         }
 
         /* Über uns / Philosophie */
