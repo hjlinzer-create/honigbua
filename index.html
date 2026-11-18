@@ -55,7 +55,7 @@
             color: var(--text-dark);
             line-height: 1.65;
             font-size: 1.05rem;
-            overflow-x: hidden; /* Verhindert horizontales Scrollen durch am Rand platzierte Bienen */
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .logo-text {
@@ -126,7 +126,7 @@
             color: var(--honey);
         }
 
-        /* Hero Section mit Biene 1 & 2 (am Rand abgeschnitten) */
+        /* Hero Section mit Biene 1 & 2 */
         .hero {
             background: linear-gradient(135deg, #2C3E2D 0%, #3E5440 100%);
             color: var(--white);
@@ -136,7 +136,6 @@
             overflow: hidden;
         }
 
-        /* Biene 1: Links oben abgeschnitten */
         .hero::before {
             content: "";
             position: absolute;
@@ -151,7 +150,6 @@
             pointer-events: none;
         }
 
-        /* Biene 2: Rechts unten abgeschnitten */
         .hero::after {
             content: "";
             position: absolute;
@@ -247,11 +245,10 @@
             position: relative;
         }
 
-        /* Über uns Sektion mit Biene 3 & 4 (links und rechts am Rand) */
+        /* Über uns Sektion mit Biene 3 & 4 */
         #ueber-uns {
             position: relative;
         }
-        /* Biene 3: Links am Rand */
         #ueber-uns::before {
             content: "";
             position: absolute;
@@ -265,7 +262,6 @@
             transform: rotate(-15deg);
             pointer-events: none;
         }
-        /* Biene 4: Rechts etwas weiter unten */
         #ueber-uns::after {
             content: "";
             position: absolute;
@@ -410,7 +406,7 @@
             text-align: center;
         }
 
-        /* Sortiment mit Biene 5 & 6 (links und rechts am Rand) */
+        /* Sortiment mit Biene 5 & 6 */
         .products-wrapper {
             background-color: var(--bg-sand);
             padding: 4.5rem 1.5rem;
@@ -418,7 +414,6 @@
             overflow: hidden;
         }
 
-        /* Biene 5: Rechts oben im Sortiment */
         .products-wrapper::before {
             content: "";
             position: absolute;
@@ -433,7 +428,6 @@
             pointer-events: none;
         }
 
-        /* Biene 6: Links unten im Sortiment */
         .products-wrapper::after {
             content: "";
             position: absolute;
@@ -510,24 +504,23 @@
             border-radius: 6px;
         }
 
-        /* Ab-Hof-Verkauf & Kontakt mit Biene 7 (rechts am Rand) */
+        /* Ab-Hof-Verkauf & Kontakt mit Biene 7 (angepasst, damit sie nicht abgeschnitten wird) */
         #ab-hof {
             position: relative;
             overflow: hidden;
         }
 
-        /* Biene 7: Rechts beim Kontaktbereich abgeschnitten */
         #ab-hof::after {
             content: "";
             position: absolute;
-            right: -50px;
-            bottom: 20%;
-            width: 200px;
-            height: 200px;
+            right: 15px; /* Weiter nach innen gerückt, damit sie voll sichtbar ist */
+            bottom: 10px; /* Vom unteren Rand abgehoben */
+            width: 160px;
+            height: 160px;
             background: url('biene.png') no-repeat center center;
             background-size: contain;
             opacity: 0.14;
-            transform: rotate(45deg);
+            transform: rotate(30deg);
             pointer-events: none;
         }
 
