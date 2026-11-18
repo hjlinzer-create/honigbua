@@ -39,18 +39,18 @@
 
         /* Navigation */
         header {
-            background-color: rgba(253, 251, 247, 0.95);
+            background-color: rgba(253, 251, 247, 0.96);
             backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(217, 138, 43, 0.15);
+            border-bottom: 1px solid rgba(217, 138, 43, 0.18);
         }
 
         .nav-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 1rem 1.5rem;
+            padding: 0.7rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -58,18 +58,27 @@
             gap: 1rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--forest);
-            text-decoration: none;
+        .logo-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.5px;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--forest);
         }
 
-        .logo span {
+        .logo-link img {
+            height: 54px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+        }
+
+        .logo-text span {
             color: var(--honey);
         }
 
@@ -83,7 +92,7 @@
         nav a {
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: color 0.2s;
         }
@@ -96,7 +105,7 @@
         .hero {
             background: linear-gradient(135deg, #2C3E2D 0%, #3E5440 100%);
             color: var(--white);
-            padding: 5.5rem 1.5rem;
+            padding: 5rem 1.5rem 5.5rem 1.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -114,7 +123,7 @@
         }
 
         .hero-content {
-            max-width: 780px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -133,7 +142,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-size: clamp(2.1rem, 5vw, 3.3rem);
             line-height: 1.15;
             margin-bottom: 1.2rem;
             font-weight: 800;
@@ -214,7 +223,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
-            align-items: start;
+            align-items: center;
         }
 
         .about-text h3 {
@@ -244,29 +253,74 @@
             font-weight: 600;
         }
 
+        .about-photo {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            object-fit: cover;
+            aspect-ratio: 4 / 3;
+        }
+
         .feature-cards {
             display: grid;
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.4rem;
+            margin-top: 3rem;
         }
 
         .feature-item {
             background: var(--white);
-            padding: 1.4rem;
+            padding: 1.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border-left: 4px solid var(--honey);
+            border-top: 4px solid var(--honey);
         }
 
         .feature-item h4 {
             color: var(--forest);
-            margin-bottom: 0.35rem;
-            font-size: 1.08rem;
+            margin-bottom: 0.45rem;
+            font-size: 1.1rem;
         }
 
         .feature-item p {
             color: var(--text-muted);
             font-size: 0.94rem;
             margin: 0;
+        }
+
+        /* Foto-Galerie Einblicke */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-caption {
+            padding: 0.85rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--forest);
+            text-align: center;
         }
 
         /* Sortiment */
@@ -347,10 +401,29 @@
             border-top: 5px solid var(--forest);
         }
 
+        .brand-badges {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.4rem;
+        }
+
+        .brand-badges img.logo-honigbua {
+            height: 75px;
+            width: auto;
+        }
+
+        .brand-badges img.logo-region {
+            height: 62px;
+            width: auto;
+            border-radius: 6px;
+        }
+
         .contact-info h3 {
             color: var(--forest);
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.4rem;
         }
 
         .contact-list {
@@ -462,9 +535,10 @@
     <!-- Kopfbereich / Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">
-    <img src="logo.png" alt="Bio-Imkerei Honigbua Logo" style="height: 55px; width: auto;">
-</a>
+            <a href="#" class="logo-link">
+                <img src="Honig_Bua.png" alt="Honigbua Logo">
+                <span class="logo-text">Honig<span>bua</span></span>
+            </a>
             <nav>
                 <ul>
                     <li><a href="#ueber-uns">Bio & Qualität</a></li>
@@ -509,19 +583,43 @@
                 </div>
             </div>
 
-            <div class="feature-cards">
-                <div class="feature-item">
-                    <h4>🌿 Wesensgemäße Bio-Bienenhaltung</h4>
-                    <p>Verzicht auf chemisch-synthetische Mittel und Kunststoffe. Futter und Bienenwachs stammen aus biologischer Herkunft; die Völkerführung erfolgt nach biologischen und biotechnischen Grundsätzen.</p>
-                </div>
-                <div class="feature-item">
-                    <h4>🔬 Geprüfte Reinheit im Labor</h4>
-                    <p>Neben der jährlichen Betriebskontrolle durch unsere Bio-Zertifizierungsstelle lassen wir Honigqualität, Bienenwachs (auf Rückstandsfreiheit) und Bienengesundheit regelmäßig im Labor untersuchen.</p>
-                </div>
-                <div class="feature-item">
-                    <h4>🐝 Heimische Carnica-Bienen</h4>
-                    <p>Wir arbeiten mit der sanftmütigen, widerstandsfähigen Karnischen Honigbiene („Carnica“), die optimal an das Klima des Schneeberglandes angepasst ist.</p>
-                </div>
+            <div>
+                <img src="2023-10-12 08_33_15.jpg" alt="Imker mit Naturwabenbau in Holzrähmchen" class="about-photo">
+            </div>
+        </div>
+
+        <div class="feature-cards">
+            <div class="feature-item">
+                <h4>🌿 Wesensgemäße Bio-Bienenhaltung</h4>
+                <p>Verzicht auf chemisch-synthetische Mittel und Kunststoffe. Futter und Bienenwachs stammen aus biologischer Herkunft; die Völkerführung erfolgt nach biologischen und biotechnischen Grundsätzen.</p>
+            </div>
+            <div class="feature-item">
+                <h4>🔬 Geprüfte Reinheit im Labor</h4>
+                <p>Neben der jährlichen Betriebskontrolle durch unsere Bio-Zertifizierungsstelle lassen wir Honigqualität, Bienenwachs (auf Rückstandsfreiheit) und Bienengesundheit regelmäßig im Labor untersuchen.</p>
+            </div>
+            <div class="feature-item">
+                <h4>🐝 Heimische Carnica-Bienen</h4>
+                <p>Wir arbeiten mit der sanftmütigen, widerstandsfähigen Karnischen Honigbiene („Carnica“), die optimal an das Klima des Schneeberglandes angepasst ist.</p>
+            </div>
+        </div>
+
+        <!-- Einblicke in unsere Imkerei (4 Fotos) -->
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="IMG_4279.jpg" alt="Holz-Bienenstöcke im Bienenhaus">
+                <div class="gallery-caption">Unsere Holz-Bienenstöcke</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4244.jpg" alt="Carnica-Bienenvolk mit gezeichneter Königin">
+                <div class="gallery-caption">Heimische Carnica-Bienen</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4317.jpg" alt="Bio-Honig Gläser in der Wiese">
+                <div class="gallery-caption">Abgefüllt in 250 g, 500 g & 960 g</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4201.jpg" alt="Frische Blüten und Kräuter für Bio-Oxymel">
+                <div class="gallery-caption">Handgemachtes Bio-Oxymel</div>
             </div>
         </div>
     </section>
@@ -625,6 +723,11 @@
 
         <div class="contact-box">
             <div class="contact-info">
+                <div class="brand-badges">
+                    <img src="Honig_Bua.png" alt="Logo Bio-Imkerei Honigbua" class="logo-honigbua">
+                    <img src="Schneebergland-logo-70AD5A638D-seeklogo.com.gif" alt="Logo Region Schneebergland" class="logo-region">
+                </div>
+
                 <h3>Bio-Imkerei Honigbua</h3>
                 <p><strong>Claudia und Hans-Jürgen Linzer</strong></p>
 
