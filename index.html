@@ -332,12 +332,15 @@
             font-weight: 600;
         }
 
+        /* Bild-Optimierung: Verhindert Abschneiden der Motive */
         .about-photo {
             width: 100%;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            object-fit: cover;
+            object-fit: contain; /* Zeigt das gesamte Bild ohne Beschneidung */
+            background-color: var(--bg-sand);
             aspect-ratio: 4 / 3;
+            padding: 0.5rem;
         }
 
         .feature-cards {
@@ -384,13 +387,17 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
         }
 
         .gallery-card img {
             width: 100%;
-            height: 230px;
-            object-fit: cover;
+            height: 240px;
+            object-fit: contain; /* Garantiert, dass die Honiggläser vollständig im Bild sind */
+            background-color: var(--white);
             display: block;
+            padding: 0.5rem;
             transition: transform 0.3s ease;
         }
 
@@ -404,6 +411,8 @@
             font-weight: 600;
             color: var(--forest);
             text-align: center;
+            background-color: var(--white);
+            border-top: 1px solid #F4EFE6;
         }
 
         /* Sortiment mit Biene 5 & 6 */
@@ -504,7 +513,7 @@
             border-radius: 6px;
         }
 
-        /* Ab-Hof-Verkauf & Kontakt mit Biene 7 (angepasst, damit sie nicht abgeschnitten wird) */
+        /* Ab-Hof-Verkauf & Kontakt mit Biene 7 */
         #ab-hof {
             position: relative;
             overflow: hidden;
@@ -513,8 +522,8 @@
         #ab-hof::after {
             content: "";
             position: absolute;
-            right: 15px; /* Weiter nach innen gerückt, damit sie voll sichtbar ist */
-            bottom: 10px; /* Vom unteren Rand abgehoben */
+            right: 15px;
+            bottom: 10px;
             width: 160px;
             height: 160px;
             background: url('biene.png') no-repeat center center;
@@ -662,12 +671,16 @@
             font-size: 0.88rem;
         }
 
+        /* Smartphone Feinabstimmung */
         @media (max-width: 600px) {
             .contact-box {
                 padding: 1.8rem;
             }
             .hero {
                 padding: 4rem 1.2rem;
+            }
+            .gallery-card img {
+                height: 200px;
             }
         }
     </style>
