@@ -508,4 +508,406 @@
         }
 
         .brand-badges {
-            display: flex
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.4rem;
+        }
+
+        .brand-badges img.logo-honigbua {
+            height: 75px;
+            width: auto;
+        }
+
+        .brand-badges img.logo-region {
+            height: 62px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .contact-info h3 {
+            color: var(--forest);
+            font-size: 1.65rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-top: 1.2rem;
+        }
+
+        .contact-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-list a {
+            color: var(--honey-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+
+        .map-card {
+            background-color: var(--bg-sand);
+            border-radius: var(--radius);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .map-card h4 {
+            color: var(--forest);
+            font-size: 1.25rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .map-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 1.4rem;
+        }
+
+        /* Footer & Impressum */
+        footer {
+            background-color: var(--forest);
+            color: #D5DFD6;
+            padding: 3rem 1.5rem 2rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        details.impressum {
+            background-color: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 1rem 1.4rem;
+            margin-bottom: 2rem;
+        }
+
+        details.impressum summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--white);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        details.impressum summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .impressum-content {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #9FB0A1;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            .contact-box {
+                padding: 1.8rem;
+            }
+            .hero {
+                padding: 4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Kopfbereich / Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-link">
+                <img src="Honig_Bua.png" alt="Honigbua Logo">
+                <span class="logo-text">Honig<span>bua</span></span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#ueber-uns">Bio & Qualität</a></li>
+                    <li><a href="#sortiment">Sortiment</a></li>
+                    <li><a href="#ab-hof">Ab-Hof-Verkauf</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Startbereich (Hero) -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="badge">Zertifizierte Bio-Imkerei • Schneebergland NÖ</div>
+            <h1>100 % Natur – Bio-Honig aus dem Schneebergland</h1>
+            <p>Echte Handarbeit von Claudia und Hans-Jürgen Linzer aus Saubersdorf. Mit jedem Glas unterstützen Sie die Artenvielfalt und Bestäubung direkt vor Ihrer Haustür.</p>
+            <div class="btn-group">
+                <a href="#sortiment" class="btn btn-primary">Unsere Bio-Produkte</a>
+                <a href="#ab-hof" class="btn btn-secondary">Ab-Hof-Verkauf & Kontakt</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Über uns / Philosophie & Bio-Qualität -->
+    <section id="ueber-uns">
+        <div class="section-header">
+            <h2>Bio aus Überzeugung – im Einklang mit der Natur</h2>
+            <p>Bio ist für uns nicht nur ein Siegel, sondern eine Haltung: Jedes Glas entsteht in reiner Handarbeit, von der Völkerpflege bis zur Abfüllung.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Warum Honig vom Bio-Imker ums Eck?</h3>
+                <p>Unsere Bienen sichern die Bestäubung von Obstgärten, Wiesen und Wildpflanzen im Bezirk Neunkirchen. Um Wildbienen zu schützen und die Biodiversität zu fördern, setzen wir bewusst auf kleine Standorte mit reichlich Bio- und Wildpflanzen.</p>
+                <p>Zugleich ist naturbelassener Bio-Honig eine reine, unverfälschte Alternative zum Süßen im Alltag – voller natürlicher Aromen unserer niederösterreichischen Landschaft.</p>
+                
+                <div class="quality-pills">
+                    <span class="pill">✓ Jährliche Bio-Kontrolle</span>
+                    <span class="pill">✓ Laborgeprüfter Honig & Wachs</span>
+                    <span class="pill">✓ Reine Holz-Bienenstöcke</span>
+                    <span class="pill">✓ Lagerung nur in Glas & Edelstahl</span>
+                </div>
+            </div>
+
+            <div>
+                <img src="2023-10-12 08_33_15.png" alt="Imker mit Naturwabenbau in Holzrähmchen" class="about-photo">
+            </div>
+        </div>
+
+        <div class="feature-cards">
+            <div class="feature-item">
+                <h4>🌿 Wesensgemäße Bio-Bienenhaltung</h4>
+                <p>Verzicht auf chemisch-synthetische Mittel und Kunststoffe. Futter und Bienenwachs stammen aus biologischer Herkunft; die Völkerführung erfolgt nach biologischen und biotechnischen Grundsätzen.</p>
+            </div>
+            <div class="feature-item">
+                <h4>🔬 Geprüfte Reinheit im Labor</h4>
+                <p>Neben der jährlichen Betriebskontrolle durch unsere Bio-Zertifizierungsstelle lassen wir Honigqualität, Bienenwachs (auf Rückstandsfreiheit) und Bienengesundheit regelmäßig im Labor untersuchen.</p>
+            </div>
+            <div class="feature-item">
+                <h4>🐝 Heimische Carnica-Bienen</h4>
+                <p>Wir arbeiten mit der sanftmütigen, widerstandsfähigen Karnischen Honigbiene („Carnica“), die optimal an das Klima des Schneeberglandes angepasst ist.</p>
+            </div>
+        </div>
+
+        <!-- Einblicke in unsere Imkerei (4 Fotos) -->
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="IMG_4279.JPG" alt="Holz-Bienenstöcke im Bienenhaus">
+                <div class="gallery-caption">Unsere Holz-Bienenstöcke</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4244.JPG" alt="Carnica-Bienenvolk mit gezeichneter Königin">
+                <div class="gallery-caption">Heimische Carnica-Bienen</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4317.JPG" alt="Bio-Honig Gläser in der Wiese">
+                <div class="gallery-caption">Abgefüllt in 250 g, 500 g & 960 g</div>
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_4201.JPG" alt="Frische Blüten und Kräuter für Bio-Oxymel">
+                <div class="gallery-caption">Handgemachtes Bio-Oxymel</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sortiment -->
+    <div class="products-wrapper" id="sortiment">
+        <div class="products-inner">
+            <div class="section-header">
+                <h2>Unsere natürlichen Köstlichkeiten</h2>
+                <p>Schonend geerntet, kaltgeschleudert und ausschließlich in Edelstahl und Glas gelagert.</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- Karte 1: Waldhonig -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">🌲</div>
+                        <h3>Bio-Waldhonig</h3>
+                        <p>Kräftig, würzig und aromatisch: Unser dunkler Waldhonig stammt aus den Wäldern des Schneeberglandes und bleibt lange flüssig.</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">250 g</span>
+                        <span class="size-tag">500 g</span>
+                        <span class="size-tag">960 g</span>
+                    </div>
+                </div>
+
+                <!-- Karte 2: Blütenhonig -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">🌼</div>
+                        <h3>Bio-Blütenhonig</h3>
+                        <p>Mild, blumig und sonnig: Gesammelt von unzähligen Bio- und Wildpflanzen, Obstbäumen und Wiesenblumen unserer Region.</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">250 g</span>
+                        <span class="size-tag">500 g</span>
+                        <span class="size-tag">960 g</span>
+                    </div>
+                </div>
+
+                <!-- Karte 3: Cremehonig -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">🍯</div>
+                        <h3>Bio-Cremehonig</h3>
+                        <p>Zart-schmelzend und streichfest: Durch schonendes Rühren erhält unser Blütenhonig seine feincremige Konsistenz – tropft nicht vom Brot!</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">250 g</span>
+                        <span class="size-tag">500 g</span>
+                        <span class="size-tag">960 g</span>
+                    </div>
+                </div>
+
+                <!-- Karte 4: Oxymel -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">🫙</div>
+                        <h3>Bio-Oxymel</h3>
+                        <p>Der traditionelle „Sauerhonig“ aus feinem Bio-Honig und naturtrübem Bio-Apfelessig – fein-säuerlich im Geschmack und vielseitig zum Verdünnen oder Verfeinern.</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">Naturprodukt im Glas</span>
+                    </div>
+                </div>
+
+                <!-- Karte 5: Propolistropfen -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">💧</div>
+                        <h3>Propolistropfen</h3>
+                        <p>Das natürliche Schutzharz der Bienen, sorgfältig angesetzt und in praktischen Tropfflaschen abgefüllt.</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">Tropfflasche</span>
+                    </div>
+                </div>
+
+                <!-- Karte 6: Carnica-Bienen & Saisonales -->
+                <div class="product-card">
+                    <div>
+                        <div class="product-icon">🐝</div>
+                        <h3>Bio-Carnica-Bienen & Mehr</h3>
+                        <p>Für Imker bieten wir sanftmütige „Carnica“-Bienen mit Gesundheitszertifikat (Wirtschaftsvölker, Brutableger & Kehrschwärme mit Wirtschaftsköniginnen) sowie saisonale Spezialitäten.</p>
+                    </div>
+                    <div class="sizes">
+                        <span class="size-tag">Mit Gesundheitszertifikat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ab-Hof-Verkauf & Kontakt -->
+    <section id="ab-hof">
+        <div class="section-header">
+            <h2>Ab-Hof-Verkauf & Kontakt</h2>
+            <p>Kaufen Sie beim Imker Ihres Vertrauens – besuchen Sie uns in Saubersdorf oder rufen Sie uns einfach kurz an.</p>
+        </div>
+
+        <div class="contact-box">
+            <div class="contact-info">
+                <div class="brand-badges">
+                    <img src="Honig_Bua.png" alt="Logo Bio-Imkerei Honigbua" class="logo-honigbua">
+                    <img src="Schneebergland-logo-70AD5A638D-seeklogo.com.gif" alt="Logo Region Schneebergland" class="logo-region">
+                </div>
+
+                <h3>Bio-Imkerei Honigbua</h3>
+                <p><strong>Claudia und Hans-Jürgen Linzer</strong></p>
+
+                <ul class="contact-list">
+                    <li>
+                        <span>📍</span>
+                        <div>
+                            <strong>Adresse Ab-Hof-Verkauf:</strong><br>
+                            Winzendorfer Straße 40<br>
+                            2731 Saubersdorf (Bezirk Neunkirchen, NÖ)
+                        </div>
+                    </li>
+                    <li>
+                        <span>📞</span>
+                        <div>
+                            <strong>Telefon Claudia:</strong> <a href="tel:+436769203690">0676 9203690</a><br>
+                            <strong>Telefon Hans-Jürgen:</strong> <a href="tel:+436642377367">0664 2377367</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span>✉️</span>
+                        <div>
+                            <strong>E-Mail:</strong><br>
+                            <a href="mailto:bioimker@honigbua.at">bioimker@honigbua.at</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="map-card">
+                <h4>So finden Sie zu uns</h4>
+                <p>Unser Ab-Hof-Verkauf befindet sich in der Winzendorfer Straße 40 in 2731 Saubersdorf im schönen Schneebergland. Am besten kurz vorher telefonisch melden, damit wir sicher für Sie da sind!</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Winzendorfer+Stra%C3%9Fe+40,+2731+Saubersdorf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-align: center;">
+                    Route in Google Maps öffnen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Impressum -->
+    <footer>
+        <div class="footer-inner">
+            <details class="impressum">
+                <summary>
+                    <span>Impressum & Rechtliche Hinweise (anklicken zum Öffnen)</span>
+                    <span>▼</span>
+                </summary>
+                <div class="impressum-content">
+                    <p><strong>Informationspflicht laut § 5 E-Commerce-Gesetz (ECG) und Offenlegung laut § 25 Mediengesetz:</strong></p>
+                    <p>
+                        <strong>Bio-Imkerei Honigbua</strong><br>
+                        Claudia und Hans-Jürgen Linzer<br>
+                        Winzendorfer Straße 40<br>
+                        2731 Saubersdorf, Österreich
+                    </p>
+                    <p>
+                        <strong>Kontakt:</strong><br>
+                        Telefon Claudia: 0676 9203690<br>
+                        Telefon Hans-Jürgen: 0664 2377367<br>
+                        E-Mail: bioimker@honigbua.at
+                    </p>
+                    <p>
+                        <strong>Unternehmensgegenstand:</strong> Land- und forstwirtschaftlicher Betrieb / Bio-Imkerei & Ab-Hof-Verkauf von Imkereiprodukten.<br>
+                        <strong>Datenschutz-Hinweis:</strong> Diese Webseite verwendet keine Tracking-Cookies und speichert keine personenbezogenen Daten der Besucher. Bei Kontaktaufnahme per Telefon oder E-Mail werden Ihre Angaben zwecks Bearbeitung der Anfrage verarbeitet.
+                    </p>
+                </div>
+            </details>
+
+            <div class="footer-bottom">
+                <span>© 2026 Bio-Imkerei Honigbua – Claudia & Hans-Jürgen Linzer</span>
+                <span>Saubersdorf • Schneebergland • Niederösterreich</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
