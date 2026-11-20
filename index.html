@@ -5,933 +5,671 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Honigbua – Bio-Imkerei aus dem Schneebergland</title>
     <meta name="description" content="Zertifizierte Bio-Imkerei Claudia und Hans-Jürgen Linzer in Saubersdorf, Schneebergland (NÖ). Bio Wald-, Blüten- und Cremehonig, Oxymel, Propolistropfen & Bio-Carnica-Bienen.">
+    <meta name="theme-color" content="#3B2A22">
     <style>
-        /* Eigene Schriftarten einbinden */
         @font-face {
             font-family: 'SUNDAY';
-            src: url('sunday.otf') format('opentype'),
-                 url('sunday.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
+            src: url('sunday.otf') format('opentype'), url('sunday.ttf') format('truetype');
+            font-weight: normal; font-style: normal; font-display: swap;
         }
-
         @font-face {
             font-family: 'Reef';
-            src: url('reef.otf') format('opentype'),
-                 url('reef.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
+            src: url('reef.otf') format('opentype'), url('reef.ttf') format('truetype');
+            font-weight: normal; font-style: normal; font-display: swap;
         }
 
+        /* Farben aus dem Etikett: Kraftpapier, Dunkelbraun, Bio-Grün */
         :root {
-            --bg-cream: #FDFBF7;
-            --bg-sand: #F4EFE6;
-            --honey: #D98A2B;
-            --honey-dark: #B56E18;
-            --forest: #2C3E2D;
-            --forest-light: #4A634C;
-            --text-dark: #2B2620;
-            --text-muted: #5E564C;
-            --white: #FFFFFF;
-            --radius: 14px;
-            --shadow: 0 10px 30px rgba(44, 62, 45, 0.08);
+            --kraft: #D9C7A3;
+            --kraft-light: #E9DCC2;
+            --paper: #F4ECDC;
+            --ink: #3A2B22;
+            --ink-soft: #5E4D41;
+            --ink-mute: #7A6A5C;
+            --leaf: #8DB23B;
+            --leaf-deep: #5E7F1D;
+            --leaf-soft: #DCE8BE;
+            --white: #FFFCF6;
+            --line: rgba(58, 43, 34, 0.18);
+            --radius: 18px;
+            --shadow: 0 14px 34px rgba(58, 43, 34, 0.14);
+            --ease: cubic-bezier(.2, .7, .2, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         body {
-            font-family: 'Reef', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            line-height: 1.65;
+            font-family: 'Reef', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--paper);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+        img { max-width: 100%; display: block; }
+        a { color: var(--ink); }
+        :focus-visible { outline: 3px solid var(--leaf-deep); outline-offset: 3px; border-radius: 8px; }
 
-        h1, h2, h3, .logo-text {
+        h1, h2, h3, .display {
             font-family: 'SUNDAY', Georgia, serif;
-            letter-spacing: 0.5px;
             font-weight: normal;
+            letter-spacing: 0.4px;
+            line-height: 1.12;
+            color: var(--ink);
         }
 
-        /* Navigation */
-        header {
-            background-color: rgba(253, 251, 247, 0.96);
-            backdrop-filter: blur(8px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(217, 138, 43, 0.18);
+        .wrap { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: .55rem;
+            font-size: .85rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+            color: var(--leaf-deep);
         }
+        .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--leaf); }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0.7rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-            color: var(--forest);
-        }
-
-        .logo-link img {
-            height: 54px;
-            width: auto;
-            display: block;
-        }
-
-        .logo-text {
-            font-size: 1.55rem;
-        }
-
-        .logo-text span {
-            color: var(--honey);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--honey);
-        }
-
-        /* Hero Section mit Biene 1 & 2 */
-        .hero {
-            background: linear-gradient(135deg, #2C3E2D 0%, #3E5440 100%);
-            color: var(--white);
-            padding: 5.5rem 1.5rem 6rem 1.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -20px;
-            left: -40px;
-            width: 160px;
-            height: 160px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.22;
-            transform: rotate(-25deg);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            bottom: 5px;
-            right: -50px;
-            width: 190px;
-            height: 190px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.18;
-            transform: rotate(35deg);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 820px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: rgba(217, 138, 43, 0.22);
-            color: #F8C471;
-            border: 1px solid rgba(248, 196, 113, 0.4);
-            padding: 0.35rem 1rem;
-            border-radius: 50px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
-            line-height: 1.18;
-            margin-bottom: 1.2rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #E6ECE7;
-            margin-bottom: 2.2rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 0.9rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s, background-color 0.2s;
+            display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+            min-height: 48px; padding: .75rem 1.5rem; border-radius: 999px;
+            font: 600 1rem 'Reef', system-ui, sans-serif; text-decoration: none; cursor: pointer;
+            border: 2px solid var(--ink);
+            transition: transform .25s var(--ease), background-color .25s, color .25s, box-shadow .25s;
         }
+        .btn svg { width: 18px; height: 18px; flex: none; }
+        .btn-primary { background: var(--leaf-deep); border-color: var(--leaf-deep); color: #fff; box-shadow: 0 6px 0 var(--ink); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--ink); }
+        .btn-primary:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+        .btn-ghost { background: transparent; color: var(--ink); }
+        .btn-ghost:hover { background: var(--ink); color: var(--kraft-light); }
 
-        .btn-primary {
-            background-color: var(--honey);
-            color: var(--white);
+        /* ---------- Kopfbereich ---------- */
+        header.site {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 236, 220, .92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
         }
+        .nav {
+            max-width: 1140px; margin: 0 auto; padding: .6rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+        .logo img { height: 50px; width: auto; }
+        .logo-text { font-family: 'SUNDAY', Georgia, serif; font-size: 1.6rem; color: var(--ink); line-height: 1; }
+        .logo-text span { color: var(--leaf-deep); }
+        .nav-links { display: flex; align-items: center; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a {
+            text-decoration: none; font-weight: 600; font-size: .98rem;
+            padding: .3rem 0; position: relative;
+        }
+        .nav-links a::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+            background: var(--leaf); transform: scaleX(0); transform-origin: left;
+            transition: transform .3s var(--ease);
+        }
+        .nav-links a:hover::after { transform: scaleX(1); }
+        .nav .btn { min-height: 42px; padding: .5rem 1.1rem; font-size: .95rem; box-shadow: 0 4px 0 var(--ink); }
 
-        .btn-primary:hover {
-            background-color: var(--honey-dark);
-            transform: translateY(-2px);
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative; overflow: hidden;
+            background-color: var(--kraft);
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(58,43,34,.10) 1px, transparent 0);
+            background-size: 22px 22px;
+            padding: 5rem 0 6rem;
         }
+        .hero-grid {
+            display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center;
+            position: relative; z-index: 2;
+        }
+        .badge-bio {
+            display: inline-flex; align-items: center; gap: .5rem;
+            background: var(--leaf); color: #fff; font-weight: 700; font-size: .85rem;
+            letter-spacing: .12em; text-transform: uppercase;
+            padding: .4rem .95rem; border-radius: 6px; transform: rotate(-2deg);
+            box-shadow: 0 4px 0 var(--ink);
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.4rem);
+            margin: 1.2rem 0 1.1rem;
+        }
+        .hero h1 em { font-style: normal; color: var(--leaf-deep); }
+        .hero .lead { font-size: 1.22rem; color: var(--ink-soft); max-width: 36em; margin-bottom: 2rem; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: .9rem; }
 
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.12);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .hero-visual {
+            position: relative; aspect-ratio: 1 / 1; max-width: 460px; width: 100%; justify-self: center;
         }
+        .hero-disc {
+            position: absolute; inset: 8%;
+            background: var(--paper); border: 3px solid var(--ink); border-radius: 50%;
+            display: grid; place-items: center; box-shadow: 12px 12px 0 var(--ink);
+        }
+        .hero-disc img { width: 62%; height: auto; }
+        .hex-ring {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            animation: spin 60s linear infinite;
+        }
+        .hex-ring path { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 4 7; opacity: .5; }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+        /* Fliegende Bienen */
+        .fly-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+        .bee {
+            position: absolute; top: var(--y, 20%); left: 0;
+            width: var(--w, 90px);
+            animation: fly var(--dur, 18s) linear var(--delay, 0s) infinite;
+            will-change: transform;
         }
+        .bee img {
+            width: 100%; height: auto;
+            filter: drop-shadow(3px 4px 0 rgba(58,43,34,.18));
+            animation: bob .5s ease-in-out infinite alternate;
+        }
+        .bee.flip img { transform: scaleX(-1); }
+        .bee.wobble { animation: fly-wobble var(--dur, 18s) linear var(--delay, 0s) infinite; }
+        .bee.reverse { animation-name: fly-back; }
 
-        /* Allgemeine Sections */
-        section {
-            padding: 4.5rem 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
+        @keyframes fly {
+            0%   { transform: translate(-20vw, 0); }
+            25%  { transform: translate(25vw, -30px); }
+            50%  { transform: translate(60vw, 10px); }
+            75%  { transform: translate(90vw, -20px); }
+            100% { transform: translate(120vw, 0); }
         }
+        @keyframes fly-back {
+            0%   { transform: translate(120vw, 0); }
+            50%  { transform: translate(40vw, -25px); }
+            100% { transform: translate(-30vw, 10px); }
+        }
+        @keyframes fly-wobble {
+            0%   { transform: translate(-20vw, 0) rotate(-6deg); }
+            50%  { transform: translate(50vw, -40px) rotate(6deg); }
+            100% { transform: translate(120vw, 0) rotate(-6deg); }
+        }
+        @keyframes bob {
+            from { transform: translateY(-4px) rotate(-3deg); }
+            to   { transform: translateY(5px) rotate(3deg); }
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Über uns Sektion mit Biene 3 & 4 */
-        #ueber-uns {
-            position: relative;
-        }
-        #ueber-uns::before {
-            content: "";
-            position: absolute;
-            left: -50px;
-            top: 15%;
-            width: 180px;
-            height: 180px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.14;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-        #ueber-uns::after {
-            content: "";
-            position: absolute;
-            right: -60px;
-            bottom: 15%;
-            width: 210px;
-            height: 210px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.14;
-            transform: rotate(20deg);
-            pointer-events: none;
-        }
+        /* Bienen-Wahrzeichen im Hero (Ränder) */
+        .hero .bee { z-index: 1; }
 
-        .section-header {
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto 3.2rem auto;
-            position: relative;
-            z-index: 1;
+        /* ---------- Vertrauensleiste ---------- */
+        .strip {
+            background: var(--ink); color: var(--kraft-light);
+            overflow: hidden; position: relative; z-index: 3;
         }
-
-        .section-header h2 {
-            font-size: 2.25rem;
-            color: var(--forest);
-            margin-bottom: 0.7rem;
+        .strip-track {
+            display: flex; gap: 2.5rem; align-items: center; white-space: nowrap;
+            padding: 1rem 0; width: max-content;
+            animation: marquee 38s linear infinite;
+            font-family: 'SUNDAY', Georgia, serif; font-size: 1.25rem; letter-spacing: .5px;
         }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        .strip-track span { display: inline-flex; align-items: center; gap: 2.5rem; }
+        .strip-track span::after {
+            content: ""; width: 12px; height: 12px; background: var(--leaf);
+            transform: rotate(45deg); flex: none;
         }
+        @keyframes marquee { to { transform: translateX(-50%); } }
 
-        /* Über uns / Philosophie */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
+        /* ---------- Abschnitte ---------- */
+        section.block { padding: 5.5rem 0; position: relative; overflow: hidden; }
+        .section-head { max-width: 680px; margin-bottom: 3rem; }
+        .section-head h2 { font-size: clamp(2.1rem, 4.4vw, 3.1rem); margin: .7rem 0 .8rem; }
+        .section-head p { color: var(--ink-soft); font-size: 1.1rem; }
 
-        .about-text h3 {
-            color: var(--forest);
-            font-size: 1.6rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.1rem;
-        }
-
-        .quality-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1.5rem;
-        }
-
+        /* Über uns */
+        #ueber-uns { background: var(--paper); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+        .about-text h3 { font-size: 1.8rem; margin-bottom: .9rem; }
+        .about-text p { color: var(--ink-soft); margin-bottom: 1rem; }
+        .pills { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; list-style: none; }
         .pill {
-            background-color: var(--bg-sand);
-            color: var(--forest);
-            padding: 0.45rem 0.9rem;
-            border-radius: 50px;
-            font-size: 0.92rem;
-            font-weight: 600;
+            display: inline-flex; align-items: center; gap: .45rem;
+            border: 2px solid var(--ink); border-radius: 999px; padding: .35rem .9rem;
+            font-weight: 600; font-size: .95rem; background: var(--white);
+        }
+        .pill svg { width: 16px; height: 16px; color: var(--leaf-deep); }
+        .photo-frame {
+            position: relative; border: 3px solid var(--ink); border-radius: var(--radius);
+            background: var(--kraft-light); padding: .6rem; box-shadow: 12px 12px 0 var(--ink);
+        }
+        .photo-frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 10px; background: var(--white); }
+        .photo-tag {
+            position: absolute; top: -14px; right: 18px; background: var(--leaf); color: #fff;
+            font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
+            padding: .3rem .8rem; border-radius: 6px; border: 2px solid var(--ink); transform: rotate(3deg);
         }
 
-        /* Bild-Optimierung: Verhindert Abschneiden der Motive */
-        .about-photo {
-            width: 100%;
-            border-radius: var(--radius);
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; margin-top: 4rem; }
+        .feature {
+            background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius);
+            padding: 1.6rem; box-shadow: 6px 6px 0 var(--ink);
+            transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+        }
+        .feature:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--ink); }
+        .feature .ico {
+            width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+            background: var(--leaf-soft); border: 2px solid var(--ink); margin-bottom: 1rem;
+        }
+        .feature .ico svg { width: 26px; height: 26px; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .feature h4 { font-family: 'SUNDAY', Georgia, serif; font-size: 1.35rem; font-weight: normal; margin-bottom: .45rem; }
+        .feature p { color: var(--ink-soft); font-size: .98rem; }
+
+        .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3.5rem; }
+        .gallery figure {
+            background: var(--white); border: 2px solid var(--ink); border-radius: 14px; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        .gallery img { width: 100%; height: 220px; object-fit: contain; background: var(--kraft-light); padding: .4rem; }
+        .gallery figcaption {
+            font-weight: 600; font-size: .92rem; padding: .7rem .9rem; text-align: center;
+            border-top: 2px solid var(--ink); background: var(--white);
+        }
+
+        /* Sortiment */
+        #sortiment { background: var(--kraft); }
+        #sortiment::before, #sortiment::after {
+            content: ""; position: absolute; background-image: url('biene.png');
+            background-size: contain; background-repeat: no-repeat; opacity: .16; pointer-events: none;
+        }
+        #sortiment::before { width: 220px; height: 220px; right: -40px; top: 60px; transform: rotate(20deg); }
+        #sortiment::after  { width: 180px; height: 180px; left: -30px; bottom: 40px; transform: rotate(-25deg) scaleX(-1); }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; position: relative; z-index: 1; }
+        .product {
+            background: var(--white); border: 2px solid var(--ink); border-radius: var(--radius);
+            overflow: hidden; display: flex; flex-direction: column;
             box-shadow: var(--shadow);
-            object-fit: contain; /* Zeigt das gesamte Bild ohne Beschneidung */
-            background-color: var(--bg-sand);
-            aspect-ratio: 4 / 3;
-            padding: 0.5rem;
+            transition: transform .3s var(--ease), box-shadow .3s var(--ease);
         }
-
-        .feature-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 1.4rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
+        .product:hover { transform: translateY(-5px); box-shadow: 0 22px 40px rgba(58,43,34,.22); }
+        .product-top {
+            position: relative; padding: 1.6rem 1.6rem 1.2rem; border-bottom: 2px solid var(--ink);
+            background: var(--leaf-soft);
         }
-
-        .feature-item {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--honey);
+        .product-top.honey { background: #F0DEB6; }
+        .product-top.dark { background: var(--ink); color: var(--kraft-light); }
+        .product-top.dark h3 { color: var(--kraft-light); }
+        .product-top .tag {
+            position: absolute; top: 1rem; right: 1rem; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+            background: var(--leaf-deep); color: #fff; padding: .25rem .6rem; border-radius: 6px;
         }
-
-        .feature-item h4 {
-            color: var(--forest);
-            margin-bottom: 0.45rem;
-            font-size: 1.15rem;
-        }
-
-        .feature-item p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin: 0;
-        }
-
-        /* Foto-Galerie Einblicke */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.2rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .gallery-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .gallery-card img {
-            width: 100%;
-            height: 240px;
-            object-fit: contain; /* Garantiert, dass die Honiggläser vollständig im Bild sind */
-            background-color: var(--white);
-            display: block;
-            padding: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .gallery-caption {
-            padding: 0.85rem 1rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--forest);
-            text-align: center;
-            background-color: var(--white);
-            border-top: 1px solid #F4EFE6;
-        }
-
-        /* Sortiment mit Biene 5 & 6 */
-        .products-wrapper {
-            background-color: var(--bg-sand);
-            padding: 4.5rem 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .products-wrapper::before {
-            content: "";
-            position: absolute;
-            right: -60px;
-            top: 12%;
-            width: 240px;
-            height: 240px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.13;
-            transform: rotate(25deg);
-            pointer-events: none;
-        }
-
-        .products-wrapper::after {
-            content: "";
-            position: absolute;
-            left: -55px;
-            bottom: 8%;
-            width: 220px;
-            height: 220px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.13;
-            transform: rotate(-30deg);
-            pointer-events: none;
-        }
-
-        .products-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .product-icon {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-card h3 {
-            color: var(--forest);
-            font-size: 1.5rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .product-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 1.4rem;
-        }
-
-        .sizes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #EFEAE1;
-        }
-
+        .product-top.dark .tag { background: var(--leaf); color: var(--ink); }
+        .product-top .glyph { width: 56px; height: 56px; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .product-top.dark .glyph { stroke: var(--kraft-light); }
+        .product-body { padding: 1.4rem 1.6rem 1.6rem; display: flex; flex-direction: column; gap: .9rem; flex: 1; }
+        .product h3 { font-size: 1.7rem; }
+        .product p { color: var(--ink-soft); font-size: .98rem; flex: 1; }
+        .sizes { display: flex; flex-wrap: wrap; gap: .45rem; }
         .size-tag {
-            background-color: var(--bg-sand);
-            color: var(--forest);
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.3rem 0.75rem;
-            border-radius: 6px;
+            border: 2px solid var(--ink); border-radius: 8px; padding: .2rem .6rem;
+            font-weight: 700; font-size: .88rem; background: var(--paper); font-variant-numeric: tabular-nums;
         }
 
-        /* Ab-Hof-Verkauf & Kontakt mit Biene 7 */
-        #ab-hof {
-            position: relative;
-            overflow: hidden;
+        /* Ab-Hof & Kontakt */
+        #ab-hof { background: var(--paper); }
+        .contact-card {
+            display: grid; grid-template-columns: 1.1fr .9fr; gap: 0;
+            background: var(--white); border: 3px solid var(--ink); border-radius: 22px;
+            overflow: hidden; box-shadow: 12px 12px 0 var(--ink);
+        }
+        .contact-main { padding: 2.6rem; }
+        .contact-main h3 { font-size: 2rem; margin: .6rem 0 .3rem; }
+        .contact-main .who { font-weight: 700; color: var(--ink-soft); margin-bottom: 1.6rem; }
+        .contact-rows { list-style: none; display: grid; gap: 1.1rem; }
+        .contact-rows li { display: grid; grid-template-columns: 44px 1fr; gap: .9rem; align-items: start; }
+        .contact-rows .ci {
+            width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--ink);
+            background: var(--leaf-soft); display: grid; place-items: center;
+        }
+        .contact-rows .ci svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-rows strong { display: block; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+        .contact-rows a { font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--leaf); }
+        .contact-rows a:hover { border-bottom-color: var(--ink); }
+
+        .contact-side {
+            background: var(--kraft); border-left: 3px solid var(--ink);
+            padding: 2.6rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
+            position: relative; overflow: hidden;
+        }
+        .contact-side h4 { font-family: 'SUNDAY', Georgia, serif; font-weight: normal; font-size: 1.6rem; }
+        .contact-side p { color: var(--ink-soft); }
+        .contact-side .btn { align-self: flex-start; }
+        .region-logo { width: 130px; height: auto; border-radius: 10px; border: 2px solid var(--ink); background: #fff; padding: .4rem; }
+
+        /* ---------- Footer ---------- */
+        footer { background: var(--ink); color: var(--kraft); padding: 3.5rem 0 2rem; font-size: .95rem; }
+        .footer-top { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(233,220,194,.2); }
+        .footer-top .logo-text { color: var(--kraft-light); }
+        .footer-top .logo-text span { color: var(--leaf); }
+        details.legal { margin-top: 2rem; background: rgba(255,255,255,.04); border: 1px solid rgba(233,220,194,.2); border-radius: 12px; padding: 1rem 1.4rem; }
+        details.legal summary { cursor: pointer; font-weight: 700; color: var(--kraft-light); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        details.legal summary::-webkit-details-marker { display: none; }
+        details.legal summary::after { content: "+"; font-size: 1.4rem; line-height: 1; }
+        details.legal[open] summary::after { content: "–"; }
+        .legal-content { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(233,220,194,.15); line-height: 1.7; }
+        .legal-content h3 { color: var(--kraft-light); font-size: 1.4rem; margin: 1.4rem 0 .4rem; }
+        .legal-content p { margin-bottom: .8rem; }
+        .copyright { margin-top: 1.6rem; color: #B4A48F; font-size: .88rem; }
+
+        /* ---------- Reveal beim Scrollen ---------- */
+        .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+        .js .reveal.in { opacity: 1; transform: none; }
+
+        /* ---------- Responsiv ---------- */
+        @media (max-width: 960px) {
+            .hero-grid, .about-grid, .contact-card { grid-template-columns: 1fr; }
+            .hero-visual { max-width: 380px; }
+            .features { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-side { border-left: none; border-top: 3px solid var(--ink); }
+        }
+        @media (max-width: 640px) {
+            .nav { flex-wrap: wrap; }
+            .nav-links { gap: .9rem; width: 100%; justify-content: center; order: 3; }
+            .nav .btn { display: none; }
+            .hero { padding: 3.5rem 0 4.5rem; }
+            section.block { padding: 4rem 0; }
+            .product-grid { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr 1fr; gap: .7rem; }
+            .gallery img { height: 150px; }
+            .contact-main, .contact-side { padding: 1.8rem; }
+            .hero .btn-group .btn { width: 100%; }
         }
 
-        #ab-hof::after {
-            content: "";
-            position: absolute;
-            right: 15px;
-            bottom: 10px;
-            width: 160px;
-            height: 160px;
-            background: url('biene.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.14;
-            transform: rotate(30deg);
-            pointer-events: none;
-        }
-
-        .contact-box {
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.8rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            border-top: 5px solid var(--forest);
-            position: relative;
-            z-index: 1;
-        }
-
-        .brand-badges {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.4rem;
-        }
-
-        .brand-badges img.logo-honigbua {
-            height: 75px;
-            width: auto;
-        }
-
-        .brand-badges img.logo-region {
-            height: 62px;
-            width: auto;
-            border-radius: 6px;
-        }
-
-        .contact-info h3 {
-            color: var(--forest);
-            font-size: 1.65rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .contact-list {
-            list-style: none;
-            margin-top: 1.2rem;
-        }
-
-        .contact-list li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            font-size: 1.05rem;
-        }
-
-        .contact-list a {
-            color: var(--honey-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-list a:hover {
-            text-decoration: underline;
-        }
-
-        .map-card {
-            background-color: var(--bg-sand);
-            border-radius: var(--radius);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .map-card h4 {
-            color: var(--forest);
-            font-size: 1.25rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .map-card p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 1.4rem;
-        }
-
-        /* Footer & Impressum / Datenschutz */
-        footer {
-            background-color: var(--forest);
-            color: #D5DFD6;
-            padding: 3rem 1.5rem 2rem 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        details.impressum {
-            background-color: rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 1rem 1.4rem;
-            margin-bottom: 2rem;
-        }
-
-        details.impressum summary {
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--white);
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        details.impressum summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .impressum-content {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            line-height: 1.7;
-        }
-
-        .impressum-content h3, .impressum-content h4 {
-            color: var(--white);
-            margin-top: 1.2rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            color: #9FB0A1;
-            font-size: 0.88rem;
-        }
-
-        /* Smartphone Feinabstimmung */
-        @media (max-width: 600px) {
-            .contact-box {
-                padding: 1.8rem;
-            }
-            .hero {
-                padding: 4rem 1.2rem;
-            }
-            .gallery-card img {
-                height: 200px;
-            }
+        /* Reduzierte Bewegung: keine Animationen, Bienen bleiben als Deko stehen */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+            .bee { display: none; }
+            .bee.static { display: block; left: 8%; top: 14%; }
+            .js .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Kopfbereich / Navigation -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo-link">
+    <!-- Kopfbereich -->
+    <header class="site">
+        <nav class="nav" aria-label="Hauptnavigation">
+            <a href="#top" class="logo" aria-label="Honigbua Startseite">
                 <img src="Honig_Bua.png" alt="Honigbua Logo">
                 <span class="logo-text">Honig<span>bua</span></span>
             </a>
-            <nav>
-                <ul>
-                    <li><a href="#ueber-uns">Bio & Qualität</a></li>
-                    <li><a href="#sortiment">Sortiment</a></li>
-                    <li><a href="#ab-hof">Ab-Hof-Verkauf</a></li>
-                </ul>
-            </nav>
-        </div>
+            <ul class="nav-links">
+                <li><a href="#ueber-uns">Bio &amp; Qualität</a></li>
+                <li><a href="#sortiment">Sortiment</a></li>
+                <li><a href="#ab-hof">Ab-Hof &amp; Kontakt</a></li>
+            </ul>
+            <a href="#ab-hof" class="btn btn-primary">Kontakt</a>
+        </nav>
     </header>
 
-    <!-- Startbereich (Hero) -->
-    <div class="hero">
-        <div class="hero-content">
-            <div class="badge">Zertifizierte Bio-Imkerei • Schneebergland NÖ</div>
-            <h1>100 % Natur – Bio-Honig aus dem Schneebergland</h1>
-            <p>Echte Handarbeit von Claudia und Hans-Jürgen Linzer aus Saubersdorf. Mit jedem Glas unterstützen Sie die Artenvielfalt und Bestäubung direkt vor Ihrer Haustür.</p>
-            <div class="btn-group">
-                <a href="#sortiment" class="btn btn-primary">Unsere Bio-Produkte</a>
-                <a href="#ab-hof" class="btn btn-secondary">Ab-Hof-Verkauf & Kontakt</a>
-            </div>
-        </div>
-    </div>
+    <main id="top">
 
-    <!-- Über uns / Philosophie & Bio-Qualität -->
-    <section id="ueber-uns">
-        <div class="section-header">
-            <h2>Bio aus Überzeugung – im Einklang mit der Natur</h2>
-            <p>Bio ist für uns nicht nur ein Siegel, sondern eine Haltung: Jedes Glas entsteht in reiner Handarbeit, von der Völkerpflege bis zur Abfüllung.</p>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-text">
-                <h3>Warum Honig vom Bio-Imker ums Eck?</h3>
-                <p>Unsere Bienen sichern die Bestäubung von Obstgärten, Wiesen und Wildpflanzen im Bezirk Neunkirchen. Um Wildbienen zu schützen und die Biodiversität zu fördern, setzen wir bewusst auf kleine Standorte mit reichlich Bio- und Wildpflanzen.</p>
-                <p>Zugleich ist naturbelassener Bio-Honig eine reine, unverfälschte Alternative zum Süßen im Alltag – voller natürlicher Aromen unserer niederösterreichischen Landschaft.</p>
-                
-                <div class="quality-pills">
-                    <span class="pill">✓ Jährliche Bio-Kontrolle</span>
-                    <span class="pill">✓ Laborgeprüfter Honig & Wachs</span>
-                    <span class="pill">✓ Reine Holz-Bienenstöcke</span>
-                    <span class="pill">✓ Lagerung nur in Glas & Edelstahl</span>
-                </div>
+        <!-- Hero -->
+        <div class="hero">
+            <div class="fly-layer" aria-hidden="true">
+                <div class="bee" style="--y: 12%; --w: 86px; --dur: 16s; --delay: 0s;"><img src="biene.png" alt=""></div>
+                <div class="bee flip reverse" style="--y: 62%; --w: 62px; --dur: 22s; --delay: -6s;"><img src="biene.png" alt=""></div>
+                <div class="bee wobble" style="--y: 80%; --w: 46px; --dur: 14s; --delay: -3s;"><img src="biene.png" alt=""></div>
             </div>
 
-            <div>
-                <img src="2023-10-12 08_33_15.png" alt="Imker mit Naturwabenbau in Holzrähmchen" class="about-photo">
-            </div>
-        </div>
-
-        <div class="feature-cards">
-            <div class="feature-item">
-                <h4>🌿 Wesensgemäße Bio-Bienenhaltung</h4>
-                <p>Verzicht auf chemisch-synthetische Mittel und Kunststoffe. Futter und Bienenwachs stammen aus biologischer Herkunft; die Völkerführung erfolgt nach biologischen und biotechnischen Grundsätzen.</p>
-            </div>
-            <div class="feature-item">
-                <h4>🔬 Geprüfte Reinheit im Labor</h4>
-                <p>Neben der jährlichen Betriebskontrolle durch unsere Bio-Zertifizierungsstelle lassen wir Honigqualität, Bienenwachs (auf Rückstandsfreiheit) und Bienengesundheit regelmäßig im Labor untersuchen.</p>
-            </div>
-            <div class="feature-item">
-                <h4>🐝 Heimische Carnica-Bienen</h4>
-                <p>Wir arbeiten mit der sanftmütigen, widerstandsfähigen Karnischen Honigbiene („Carnica“), die optimal an das Klima des Schneeberglandes angepasst ist.</p>
-            </div>
-        </div>
-
-        <!-- Einblicke in unsere Imkerei (4 Fotos) -->
-        <div class="gallery-grid">
-            <div class="gallery-card">
-                <img src="IMG_4279.JPG" alt="Holz-Bienenstöcke im Bienenhaus">
-                <div class="gallery-caption">Unsere Holz-Bienenstöcke</div>
-            </div>
-            <div class="gallery-card">
-                <img src="IMG_4244.JPG" alt="Carnica-Bienenvolk mit gezeichneter Königin">
-                <div class="gallery-caption">Heimische Carnica-Bienen</div>
-            </div>
-            <div class="gallery-card">
-                <img src="IMG_4317.JPG" alt="Bio-Honig Gläser in der Wiese">
-                <div class="gallery-caption">Abgefüllt in 250 g, 500 g & 960 g</div>
-            </div>
-            <div class="gallery-card">
-                <img src="IMG_4201.JPG" alt="Frische Blüten und Kräuter für Bio-Oxymel">
-                <div class="gallery-caption">Handgemachtes Bio-Oxymel</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sortiment -->
-    <div class="products-wrapper" id="sortiment">
-        <div class="products-inner">
-            <div class="section-header">
-                <h2>Unsere natürlichen Köstlichkeiten</h2>
-                <p>Schonend geerntet, kaltgeschleudert und ausschließlich in Edelstahl und Glas gelagert.</p>
-            </div>
-
-            <div class="product-grid">
-                <!-- Karte 1: Waldhonig -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">🌲</div>
-                        <h3>Bio-Waldhonig</h3>
-                        <p>Kräftig, würzig und aromatisch: Unser dunkler Waldhonig stammt aus den Wäldern des Schneeberglandes und bleibt lange flüssig.</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">250 g</span>
-                        <span class="size-tag">500 g</span>
-                        <span class="size-tag">960 g</span>
+            <div class="wrap hero-grid">
+                <div class="hero-text">
+                    <span class="badge-bio">Zertifizierte Bio-Imkerei · NÖ</span>
+                    <h1>100&nbsp;% Natur – <em>Bio-Honig</em> aus dem Schneebergland</h1>
+                    <p class="lead">Echte Handarbeit von Claudia und Hans-Jürgen Linzer aus Saubersdorf. Mit jedem Glas unterstützen Sie die Artenvielfalt und Bestäubung direkt vor Ihrer Haustür.</p>
+                    <div class="btn-group">
+                        <a href="#sortiment" class="btn btn-primary">Unsere Bio-Produkte</a>
+                        <a href="#ab-hof" class="btn btn-ghost">Ab-Hof-Verkauf &amp; Kontakt</a>
                     </div>
                 </div>
 
-                <!-- Karte 2: Blütenhonig -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">🌼</div>
-                        <h3>Bio-Blütenhonig</h3>
-                        <p>Mild, blumig und sonnig: Gesammelt von unzähligen Bio- und Wildpflanzen, Obstbäumen und Wiesenblumen unserer Region.</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">250 g</span>
-                        <span class="size-tag">500 g</span>
-                        <span class="size-tag">960 g</span>
-                    </div>
-                </div>
-
-                <!-- Karte 3: Cremehonig -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">🍯</div>
-                        <h3>Bio-Cremehonig</h3>
-                        <p>Zart-schmelzend und streichfest: Durch schonendes Rühren erhält unser Blütenhonig seine feincremige Konsistenz – tropft nicht vom Brot!</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">250 g</span>
-                        <span class="size-tag">500 g</span>
-                        <span class="size-tag">960 g</span>
-                    </div>
-                </div>
-
-                <!-- Karte 4: Oxymel -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">🫙</div>
-                        <h3>Bio-Oxymel</h3>
-                        <p>Der traditionelle „Sauerhonig“ aus feinem Bio-Honig und naturtrübem Bio-Apfelessig – fein-säuerlich im Geschmack und vielseitig zum Verdünnen oder Verfeinern.</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">Naturprodukt im Glas</span>
-                    </div>
-                </div>
-
-                <!-- Karte 5: Propolistropfen -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">💧</div>
-                        <h3>Propolistropfen</h3>
-                        <p>Das natürliche Schutzharz der Bienen, sorgfältig angesetzt und in praktischen Tropfflaschen abgefüllt.</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">Tropfflasche</span>
-                    </div>
-                </div>
-
-                <!-- Karte 6: Carnica-Bienen & Saisonales -->
-                <div class="product-card">
-                    <div>
-                        <div class="product-icon">🐝</div>
-                        <h3>Bio-Carnica-Bienen & Mehr</h3>
-                        <p>Für Imker bieten wir sanftmütige „Carnica“-Bienen mit Gesundheitszertifikat (Wirtschaftsvölker, Brutableger & Kehrschwärme mit Wirtschaftsköniginnen) sowie saisonale Spezialitäten.</p>
-                    </div>
-                    <div class="sizes">
-                        <span class="size-tag">Mit Gesundheitszertifikat</span>
+                <div class="hero-visual" aria-hidden="true">
+                    <svg class="hex-ring" viewBox="0 0 400 400">
+                        <path d="M200 8 L370 104 L370 296 L200 392 L30 296 L30 104 Z"/>
+                    </svg>
+                    <div class="hero-disc">
+                        <img src="Honig_Bua.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Ab-Hof-Verkauf & Kontakt -->
-    <section id="ab-hof">
-        <div class="section-header">
-            <h2>Ab-Hof-Verkauf & Kontakt</h2>
-            <p>Kaufen Sie beim Imker Ihres Vertrauens – besuchen Sie uns in Saubersdorf oder rufen Sie uns einfach kurz an.</p>
+        <!-- Vertrauensleiste -->
+        <div class="strip" aria-hidden="true">
+            <div class="strip-track">
+                <span>Jährliche Bio-Kontrolle</span>
+                <span>Laborgeprüfter Honig &amp; Wachs</span>
+                <span>Reine Holz-Bienenstöcke</span>
+                <span>Lagerung nur in Glas &amp; Edelstahl</span>
+                <span>Jährliche Bio-Kontrolle</span>
+                <span>Laborgeprüfter Honig &amp; Wachs</span>
+                <span>Reine Holz-Bienenstöcke</span>
+                <span>Lagerung nur in Glas &amp; Edelstahl</span>
+            </div>
         </div>
 
-        <div class="contact-box">
-            <div class="contact-info">
-                <div class="brand-badges">
-                    <img src="Honig_Bua.png" alt="Logo Bio-Imkerei Honigbua" class="logo-honigbua">
-                    <img src="Schneebergland-logo-70AD5A638D-seeklogo.com.gif" alt="Logo Region Schneebergland" class="logo-region">
-                </div>
+        <!-- Über uns -->
+        <section id="ueber-uns" class="block">
+            <div class="wrap">
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <span class="eyebrow">Bio aus Überzeugung</span>
+                        <h2 style="font-size:clamp(2rem,4vw,2.8rem); margin:.7rem 0 1rem;">Im Einklang mit der Natur</h2>
+                        <p>Bio ist für uns nicht nur ein Siegel, sondern eine Haltung: Jedes Glas entsteht in reiner Handarbeit, von der Völkerpflege bis zur Abfüllung.</p>
+                        <p>Unsere Bienen sichern die Bestäubung von Obstgärten, Wiesen und Wildpflanzen im Bezirk Neunkirchen. Um Wildbienen zu schützen und die Biodiversität zu fördern, setzen wir bewusst auf kleine Standorte mit reichlich Bio- und Wildpflanzen.</p>
+                        <p>Naturbelassener Bio-Honig ist eine reine, unverfälschte Alternative zum Süßen im Alltag, voller natürlicher Aromen unserer niederösterreichischen Landschaft.</p>
+                        <ul class="pills">
+                            <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg>Jährliche Bio-Kontrolle</li>
+                            <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg>Laborgeprüfter Honig &amp; Wachs</li>
+                            <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg>Reine Holz-Bienenstöcke</li>
+                            <li class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5 9-10"/></svg>Lagerung nur in Glas &amp; Edelstahl</li>
+                        </ul>
+                    </div>
 
-                <h3>Bio-Imkerei Honigbua</h3>
-                <p><strong>Claudia und Hans-Jürgen Linzer</strong></p>
-
-                <ul class="contact-list">
-                    <li>
-                        <span>📍</span>
-                        <div>
-                            <strong>Adresse Ab-Hof-Verkauf:</strong><br>
-                            Winzendorfer Straße 40<br>
-                            2731 Saubersdorf (Bezirk Neunkirchen, NÖ)
+                    <div class="reveal">
+                        <div class="photo-frame">
+                            <span class="photo-tag">Aus unserer Imkerei</span>
+                            <img src="2023-10-12 08_33_15.png" alt="Imker mit Naturwabenbau in Holzrähmchen">
                         </div>
-                    </li>
-                    <li>
-                        <span>📞</span>
-                        <div>
-                            <strong>Telefon Claudia:</strong> <a href="tel:+436769203690">0676 9203690</a><br>
-                            <strong>Telefon Hans-Jürgen:</strong> <a href="tel:+436642377367">0664 2377367</a>
-                        </div>
-                    </li>
-                    <li>
-                        <span>✉️</span>
-                        <div>
-                            <strong>E-Mail:</strong><br>
-                            <a href="mailto:bioimker@honigbua.at">bioimker@honigbua.at</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </div>
 
-            <div class="map-card">
-                <h4>So finden Sie zu uns</h4>
-                <p>Unser Ab-Hof-Verkauf befindet sich in der Winzendorfer Straße 40 in 2731 Saubersdorf im schönen Schneebergland. Am besten kurz vorher telefonisch melden, damit wir sicher für Sie da sind!</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Winzendorfer+Stra%C3%9Fe+40,+2731+Saubersdorf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-align: center;">
-                    Route in Google Maps öffnen
-                </a>
-            </div>
-        </div>
-    </section>
+                <div class="features">
+                    <article class="feature reveal">
+                        <div class="ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l7-7"/></svg>
+                        </div>
+                        <h4>Wesensgemäße Bio-Bienenhaltung</h4>
+                        <p>Verzicht auf chemisch-synthetische Mittel und Kunststoffe. Futter und Bienenwachs stammen aus biologischer Herkunft; die Völkerführung erfolgt nach biologischen und biotechnischen Grundsätzen.</p>
+                    </article>
+                    <article class="feature reveal">
+                        <div class="ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 15h9"/></svg>
+                        </div>
+                        <h4>Geprüfte Reinheit im Labor</h4>
+                        <p>Neben der jährlichen Betriebskontrolle durch unsere Bio-Zertifizierungsstelle lassen wir Honigqualität, Bienenwachs (auf Rückstandsfreiheit) und Bienengesundheit regelmäßig im Labor untersuchen.</p>
+                    </article>
+                    <article class="feature reveal">
+                        <div class="ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="6" ry="5"/><path d="M9 9c-1-4-4-5-5-3s1 4 4 5M15 9c1-4 4-5 5-3s-1 4-4 5"/><path d="M9.5 12h5M10 15.5h4"/></svg>
+                        </div>
+                        <h4>Heimische Carnica-Bienen</h4>
+                        <p>Wir arbeiten mit der sanftmütigen, widerstandsfähigen Karnischen Honigbiene („Carnica“), die optimal an das Klima des Schneeberglandes angepasst ist.</p>
+                    </article>
+                </div>
 
-    <!-- Footer & Impressum / Datenschutz -->
+                <div class="gallery">
+                    <figure class="reveal">
+                        <img src="IMG_4279.JPG" alt="Holz-Bienenstöcke im Bienenhaus" loading="lazy">
+                        <figcaption>Unsere Holz-Bienenstöcke</figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <img src="IMG_4244.JPG" alt="Carnica-Bienenvolk mit gezeichneter Königin" loading="lazy">
+                        <figcaption>Heimische Carnica-Bienen</figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <img src="IMG_4317.JPG" alt="Bio-Honig Gläser in der Wiese" loading="lazy">
+                        <figcaption>Abgefüllt in 250 g, 500 g &amp; 960 g</figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <img src="IMG_4201.JPG" alt="Frische Blüten und Kräuter für Bio-Oxymel" loading="lazy">
+                        <figcaption>Handgemachtes Bio-Oxymel</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sortiment -->
+        <section id="sortiment" class="block">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Sortiment</span>
+                    <h2>Unsere natürlichen Köstlichkeiten</h2>
+                    <p>Schonend geerntet, kaltgeschleudert und ausschließlich in Edelstahl und Glas gelagert.</p>
+                </div>
+
+                <div class="product-grid">
+                    <article class="product reveal">
+                        <div class="product-top honey">
+                            <span class="tag">Bio</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l6 9-6 9-6-9z"/><path d="M12 8v8"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Bio-Waldhonig</h3>
+                            <p>Kräftig, würzig und aromatisch: Unser dunkler Waldhonig stammt aus den Wäldern des Schneeberglandes und bleibt lange flüssig.</p>
+                            <div class="sizes"><span class="size-tag">250 g</span><span class="size-tag">500 g</span><span class="size-tag">960 g</span></div>
+                        </div>
+                    </article>
+
+                    <article class="product reveal">
+                        <div class="product-top">
+                            <span class="tag">Bio</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.6"/><path d="M12 3a3.5 3.5 0 0 1 0 6.5 3.5 3.5 0 0 1 0 0M12 14.5a3.5 3.5 0 0 1 0 6.5M3 12a3.5 3.5 0 0 1 6.5 0M14.5 12a3.5 3.5 0 0 1 6.5 0"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Bio-Blütenhonig</h3>
+                            <p>Mild, blumig und sonnig: Gesammelt von unzähligen Bio- und Wildpflanzen, Obstbäumen und Wiesenblumen unserer Region.</p>
+                            <div class="sizes"><span class="size-tag">250 g</span><span class="size-tag">500 g</span><span class="size-tag">960 g</span></div>
+                        </div>
+                    </article>
+
+                    <article class="product reveal">
+                        <div class="product-top honey">
+                            <span class="tag">Bio</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12v8a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z"/><path d="M6 9a6 6 0 0 1 12 0"/><path d="M9 13h6"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Bio-Cremehonig</h3>
+                            <p>Zart-schmelzend und streichfest: Durch schonendes Rühren erhält unser Blütenhonig seine feincremige Konsistenz. Tropft nicht vom Brot!</p>
+                            <div class="sizes"><span class="size-tag">250 g</span><span class="size-tag">500 g</span><span class="size-tag">960 g</span></div>
+                        </div>
+                    </article>
+
+                    <article class="product reveal">
+                        <div class="product-top dark">
+                            <span class="tag">Naturprodukt</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v3H8zM7 7h10v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"/><path d="M7 12h10"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Bio-Oxymel</h3>
+                            <p>Der traditionelle „Sauerhonig“ aus feinem Bio-Honig und naturtrübem Bio-Apfelessig: fein-säuerlich im Geschmack und vielseitig zum Verdünnen oder Verfeinern.</p>
+                            <div class="sizes"><span class="size-tag">Naturprodukt im Glas</span></div>
+                        </div>
+                    </article>
+
+                    <article class="product reveal">
+                        <div class="product-top dark">
+                            <span class="tag">Naturprodukt</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.5 5.5 7.5 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 10.5 8.5 7.5 12 3z"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Propolistropfen</h3>
+                            <p>Das natürliche Schutzharz der Bienen, sorgfältig angesetzt und in praktischen Tropfflaschen abgefüllt.</p>
+                            <div class="sizes"><span class="size-tag">Tropfflasche</span></div>
+                        </div>
+                    </article>
+
+                    <article class="product reveal">
+                        <div class="product-top">
+                            <span class="tag">Für Imker</span>
+                            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="13" rx="5" ry="4.5"/><path d="M8.5 9.5c-1-3-3-4-4-2.5s.5 3 3.5 4M15.5 9.5c1-3 3-4 4-2.5s-.5 3-3.5 4"/><path d="M9 12h6M9.5 15h5"/></svg>
+                        </div>
+                        <div class="product-body">
+                            <h3>Bio-Carnica-Bienen &amp; mehr</h3>
+                            <p>Sanftmütige „Carnica“-Bienen mit Gesundheitszertifikat: Wirtschaftsvölker, Brutableger und Kehrschwärme mit Wirtschaftsköniginnen, dazu saisonale Spezialitäten.</p>
+                            <div class="sizes"><span class="size-tag">Mit Gesundheitszertifikat</span></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ab-Hof & Kontakt -->
+        <section id="ab-hof" class="block">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Ab-Hof-Verkauf</span>
+                    <h2>Kaufen Sie beim Imker Ihres Vertrauens</h2>
+                    <p>Besuchen Sie uns in Saubersdorf oder rufen Sie uns einfach kurz an. Am besten vorher telefonisch melden, damit wir sicher für Sie da sind!</p>
+                </div>
+
+                <div class="contact-card reveal">
+                    <div class="contact-main">
+                        <span class="eyebrow">Kontakt</span>
+                        <h3>Bio-Imkerei Honigbua</h3>
+                        <p class="who">Claudia und Hans-Jürgen Linzer</p>
+                        <ul class="contact-rows">
+                            <li>
+                                <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+                                <div><strong>Adresse Ab-Hof-Verkauf</strong>Winzendorfer Straße 40<br>2731 Saubersdorf (Bezirk Neunkirchen, NÖ)</div>
+                            </li>
+                            <li>
+                                <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+                                <div><strong>Telefon</strong>Claudia: <a href="tel:+436769203690">0676 9203690</a><br>Hans-Jürgen: <a href="tel:+436642377367">0664 2377367</a></div>
+                            </li>
+                            <li>
+                                <span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+                                <div><strong>E-Mail</strong><a href="mailto:bioimker@honigbua.at">bioimker@honigbua.at</a></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-side">
+                        <div>
+                            <h4>So finden Sie zu uns</h4>
+                            <p style="margin-top:.6rem;">Unser Ab-Hof-Verkauf befindet sich in der Winzendorfer Straße 40 in 2731 Saubersdorf im schönen Schneebergland.</p>
+                        </div>
+                        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Winzendorfer+Stra%C3%9Fe+40,+2731+Saubersdorf" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                            Route in Google Maps öffnen
+                        </a>
+                        <img class="region-logo" src="Schneebergland-logo-70AD5A638D-seeklogo.com.gif" alt="Logo Region Schneebergland">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer mit Impressum & Datenschutz -->
     <footer>
-        <div class="footer-inner">
-            <details class="impressum">
-                <summary>
-                    <span>Impressum & Datenschutzerklärung (anklicken zum Öffnen)</span>
-                    <span>▼</span>
-                </summary>
-                <div class="impressum-content">
-                    <h3>Impressum & Rechtliche Hinweise</h3>
+        <div class="wrap">
+            <div class="footer-top">
+                <a href="#top" class="logo" aria-label="Zum Seitenanfang">
+                    <img src="Honig_Bua.png" alt="" style="height:44px; width:auto;">
+                    <span class="logo-text">Honig<span>bua</span></span>
+                </a>
+                <span>Saubersdorf · Schneebergland · Niederösterreich</span>
+            </div>
+
+            <details class="legal">
+                <summary><span>Impressum &amp; Datenschutzerklärung</span></summary>
+                <div class="legal-content">
+                    <h3>Impressum</h3>
                     <p><strong>Informationspflicht laut § 5 E-Commerce-Gesetz (ECG) und Offenlegung laut § 25 Mediengesetz:</strong></p>
                     <p>
                         <strong>Bio-Imkerei Honigbua</strong><br>
@@ -945,38 +683,51 @@
                         Telefon Hans-Jürgen: 0664 2377367<br>
                         E-Mail: bioimker@honigbua.at
                     </p>
-                    <p>
-                        <strong>Unternehmensgegenstand:</strong> Land- und forstwirtschaftlicher Betrieb / Bio-Imkerei & Ab-Hof-Verkauf von Imkereiprodukten.
-                    </p>
+                    <p><strong>Unternehmensgegenstand:</strong> Land- und forstwirtschaftlicher Betrieb / Bio-Imkerei &amp; Ab-Hof-Verkauf von Imkereiprodukten.</p>
 
-                    <h3 style="margin-top: 1.8rem;">Datenschutzerklärung</h3>
+                    <h3>Datenschutzerklärung</h3>
                     <p><strong>1. Verantwortlicher</strong><br>
                     Bio-Imkerei Honigbua, Claudia und Hans-Jürgen Linzer, Winzendorfer Straße 40, 2731 Saubersdorf, E-Mail: bioimker@honigbua.at.<br>
                     Zuständige Aufsichtsbehörde: Österreichische Datenschutzbehörde (www.dsb.gv.at).</p>
-
                     <p><strong>2. Hosting und Server-Logfiles</strong><br>
                     Unsere Website wird über den Hosting-Anbieter Cloudflare Pages gehostet. Beim Zugriff erfasst der Host automatisch technische Daten (IP-Adresse, Browser, Uhrzeit), die technisch notwendig sind, um die Website sicher anzuzeigen.</p>
-
-                    <p><strong>3. Schriftarten (Lokale Einbindung)</strong><br>
+                    <p><strong>3. Schriftarten (lokale Einbindung)</strong><br>
                     Unsere Schriftarten (SUNDAY und Reef) sind lokal auf dem Server hinterlegt. Es werden keine Daten an externe Schrift-Anbieter übermittelt.</p>
-
                     <p><strong>4. Cookies</strong><br>
                     Diese Website verwendet keine Tracking-, Werbe- oder Analyse-Cookies.</p>
-
                     <p><strong>5. Kontaktaufnahme</strong><br>
                     Wenn Sie per E-Mail oder Telefon Kontakt mit uns aufnehmen, werden Ihre Angaben inklusive personenbezogener Daten zur Bearbeitung der Anfrage gespeichert und nicht ohne Einwilligung weitergegeben.</p>
-
                     <p><strong>6. Ihre Rechte</strong><br>
                     Ihnen stehen die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerspruch zu. Wenden Sie sich dazu an bioimker@honigbua.at.</p>
                 </div>
             </details>
 
-            <div class="footer-bottom">
-                <span>© 2026 Bio-Imkerei Honigbua – Claudia & Hans-Jürgen Linzer</span>
-                <span>Saubersdorf • Schneebergland • Niederösterreich</span>
-            </div>
+            <p class="copyright">© 2026 Bio-Imkerei Honigbua – Claudia &amp; Hans-Jürgen Linzer</p>
         </div>
     </footer>
 
+    <script>
+        // Abschnitte sanft einblenden, nur wenn JavaScript aktiv ist
+        document.documentElement.classList.add('js');
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            items.forEach(function (el, i) {
+                el.style.transitionDelay = (i % 3) * 90 + 'ms';
+                io.observe(el);
+            });
+        })();
+    </script>
 </body>
 </html>
