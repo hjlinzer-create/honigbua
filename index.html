@@ -179,7 +179,10 @@
             filter: drop-shadow(3px 4px 0 rgba(58,43,34,.18));
             animation: bob .5s ease-in-out infinite alternate;
         }
-        .bee.reverse img { scale: 1 1; }
+        /* Körperachse in Flugrichtung: Kopf zeigt waagerecht nach rechts (gespiegelt) */
+        .bee img { rotate: 30deg; }
+        /* Gegenrichtung: ungespiegelt, Kopf zeigt waagerecht nach links */
+        .bee.reverse img { scale: 1 1; rotate: -30deg; }
         .bee.wobble { animation: fly-wobble var(--dur, 18s) linear var(--delay, 0s) infinite; }
         .bee.reverse { animation-name: fly-back; }
 
@@ -427,16 +430,16 @@
         <!-- Hero -->
         <div class="hero">
             <div class="fly-layer" aria-hidden="true">
-                <div class="bee" style="--y: 12%; --w: 86px; --dur: 16s; --delay: 0s;"><img src="biene.png" alt=""></div>
-                <div class="bee reverse" style="--y: 62%; --w: 62px; --dur: 22s; --delay: -6s;"><img src="biene.png" alt=""></div>
-                <div class="bee wobble" style="--y: 80%; --w: 46px; --dur: 14s; --delay: -3s;"><img src="biene.png" alt=""></div>
+                <div class="bee" style="--y: 12%; --w: 95px; --dur: 16s; --delay: 0s;"><img src="biene.png" alt=""></div>
+                <div class="bee reverse" style="--y: 62%; --w: 68px; --dur: 22s; --delay: -6s;"><img src="biene.png" alt=""></div>
+                <div class="bee wobble" style="--y: 80%; --w: 51px; --dur: 14s; --delay: -3s;"><img src="biene.png" alt=""></div>
             </div>
 
             <div class="wrap hero-grid">
                 <div class="hero-text">
                     <span class="badge-bio">Zertifizierte Bio-Imkerei · NÖ</span>
                     <h1>100&nbsp;% Natur – <em>Bio-Honig</em> aus dem Schneebergland</h1>
-                    <p class="lead">Echte Handarbeit von Claudia und Hans-Jürgen Linzer aus Saubersdorf. Mit jedem Glas unterstützen Sie die Artenvielfalt und Bestäubung direkt vor Ihrer Haustür.</p>
+                    <p class="lead">Echte Handarbeit aus Saubersdorf. Mit jedem Glas unterstützen Sie die Artenvielfalt und Bestäubung direkt vor Ihrer Haustür.</p>
                     <div class="btn-group">
                         <a href="#sortiment" class="btn btn-primary">Unsere Bio-Produkte</a>
                         <a href="#ab-hof" class="btn btn-ghost">Ab-Hof-Verkauf &amp; Kontakt</a>
@@ -675,13 +678,12 @@
                     <p><strong>Informationspflicht laut § 5 E-Commerce-Gesetz (ECG) und Offenlegung laut § 25 Mediengesetz:</strong></p>
                     <p>
                         <strong>Bio-Imkerei Honigbua</strong><br>
-                        Claudia und Hans-Jürgen Linzer<br>
+                        Hans-Jürgen Linzer<br>
                         Winzendorfer Straße 40<br>
                         2731 Saubersdorf, Österreich
                     </p>
                     <p>
                         <strong>Kontakt:</strong><br>
-                        Telefon Claudia: 0676 9203690<br>
                         Telefon Hans-Jürgen: 0664 2377367<br>
                         E-Mail: bioimker@honigbua.at
                     </p>
@@ -689,7 +691,7 @@
 
                     <h3>Datenschutzerklärung</h3>
                     <p><strong>1. Verantwortlicher</strong><br>
-                    Bio-Imkerei Honigbua, Claudia und Hans-Jürgen Linzer, Winzendorfer Straße 40, 2731 Saubersdorf, E-Mail: bioimker@honigbua.at.<br>
+                    Bio-Imkerei Honigbua, Hans-Jürgen Linzer, Winzendorfer Straße 40, 2731 Saubersdorf, E-Mail: bioimker@honigbua.at.<br>
                     Zuständige Aufsichtsbehörde: Österreichische Datenschutzbehörde (www.dsb.gv.at).</p>
                     <p><strong>2. Hosting und Server-Logfiles</strong><br>
                     Unsere Website wird über den Hosting-Anbieter Cloudflare Pages gehostet. Beim Zugriff erfasst der Host automatisch technische Daten (IP-Adresse, Browser, Uhrzeit), die technisch notwendig sind, um die Website sicher anzuzeigen.</p>
@@ -704,7 +706,7 @@
                 </div>
             </details>
 
-            <p class="copyright">© 2026 Bio-Imkerei Honigbua – Claudia &amp; Hans-Jürgen Linzer</p>
+            <p class="copyright">© 2026 Bio-Imkerei Honigbua – Hans-Jürgen Linzer</p>
         </div>
     </footer>
 
